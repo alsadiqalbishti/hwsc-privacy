@@ -1,0 +1,67 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.6.12 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.4.0.5125
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Dumping database structure for food
+CREATE DATABASE IF NOT EXISTS `food` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `food`;
+
+-- Dumping structure for table food.category
+CREATE TABLE IF NOT EXISTS `category` (
+  `categoryID` int(11) NOT NULL,
+  `categoryName` text,
+  PRIMARY KEY (`categoryID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for table food.photo
+CREATE TABLE IF NOT EXISTS `photo` (
+  `photoID` int(11) NOT NULL,
+  `encodeImage` longtext,
+  `postID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`photoID`),
+  KEY `postID` (`postID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for table food.post
+CREATE TABLE IF NOT EXISTS `post` (
+  `postID` int(11) NOT NULL,
+  `postTime` date DEFAULT NULL,
+  `postDescription` text,
+  `postTitle` text,
+  `userID` int(11) DEFAULT NULL,
+  `categoryID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`postID`),
+  KEY `userID` (`userID`),
+  KEY `categoryID` (`categoryID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for table food.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `userID` int(11) NOT NULL,
+  `name` text,
+  `phone` text,
+  `address` text,
+  `accountType` text,
+  `email` text,
+  `password` text,
+  `userphoto` longtext,
+  PRIMARY KEY (`userID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
